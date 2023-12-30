@@ -11,11 +11,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.app.entity.StudentRegistration;
 import com.app.service.StudentRegistrationService;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @Controller
@@ -28,6 +28,7 @@ public class RegistrationController {
 	List<String> timings;
 	 
 	 @ModelAttribute
+	 @Transactional
 	 public void preLoad() {
 	  courses = studentRegistrationService.getCoursesList();
 	  timings=studentRegistrationService.getTimingsList();
